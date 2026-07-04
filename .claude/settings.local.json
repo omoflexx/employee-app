@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/employees)",
+      "Bash(./mvnw -q -o compile)",
+      "Bash(mvn -q -o compile)",
+      "Bash(mvn -q compile)",
+      "Bash(nohup mvn spring-boot:run)",
+      "Bash(echo \"started with pid $!\")"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        table { border-collapse: collapse; width: 100%; max-width: 600px; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .actions form { display: inline; margin-right: 6px; }
+        .add-button { margin-bottom: 16px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h1>Employees</h1>
+
+    <a class="add-button" th:href="@{/employees/new}">Add Employee</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Employee Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.id}">1</td>
+                <td th:text="${employee.name}">Jane Doe</td>
+                <td class="actions">
+                    <a th:href="@{/employees/{id}/edit(id=${employee.id})}">Edit</a>
+                    <form th:action="@{/employees/{id}/delete(id=${employee.id})}" method="post"
+                          onsubmit="return confirm('Delete this employee?');">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
